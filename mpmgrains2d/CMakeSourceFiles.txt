@@ -1,0 +1,27 @@
+set( Sources
+  BasisFunctions.cpp
+  ExplicitIntegrator.cpp
+  InitialSimulationState.cpp
+  MaterialPoints.cpp
+  SimulationState.cpp
+  StaticPlane.cpp
+  PhysicsGrid.cpp
+  ConstitutiveModel.cpp
+  LinearBasisFunctions.cpp
+  CubicBasisFunctions.cpp
+  uGIMPLinearBasisFunctions.cpp
+)
+
+set( Headers
+  BasisFunctions.h
+  ExplicitIntegrator.h
+  InitialSimulationState.h
+  MaterialPoints.h
+  SimulationState.h
+  StaticPlane.h
+  PhysicsGrid.h
+  ConstitutiveModel.h
+  LinearBasisFunctions.h
+  CubicBasisFunctions.h
+  uGIMPLinearBasisFunctions.h
+)

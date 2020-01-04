@@ -1,0 +1,45 @@
+# Note: Clang makes one remove unwanted flags
+if( STRICT_BUILD )
+  # Enable as many warnings as possible
+  set( CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Werror -Weverything -Wno-c++98-compat -Wno-c++98-compat-pedantic" )
+  
+  # Remove warnings that cause issues with SCISim
+  set( CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wno-unused-parameter -Wno-padded -Wno-float-equal -Wno-global-constructors -Wno-exit-time-destructors" )
+
+  # Warnings that cause issues with the FrictionProblem cpp file
+  set( CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wno-documentation-unknown-command -Wno-old-style-cast -Wno-conversion -Wno-weak-vtables" )
+
+  # Warnings that cause issues with the prolongation front-end
+  set( CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wno-deprecated-declarations" )
+
+  # Warnings that cause issues with the hybridization code
+  set( CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wno-missing-noreturn -Wno-non-virtual-dtor -Wno-pedantic -Wno-#warnings -Wno-over-aligned -Wno-source-uses-openmp" )
+
+  # Warnings that cause issues with Bogus
+  set( CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wno-undefined-func-template" )
+endif()
+
+# Disable run time type information
+# Causes issues with Flann
+# set( CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fno-rtti" )
+
+# Compiles with static analysis support
+#set( CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} --analyze" )
+
+# Enable extra optimizations
+set( CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} -march=native" )
+# lto causes spurious warnings with the address sanitizer on Apple LLVM version 7.0.2
+if( SANITIZER STREQUAL "none" )
+  set( CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} -flto" )
+endif()
+
+# Flags for code coverage tests
+set( CMAKE_CXX_FLAGS_COVERAGE "-O0 -g --coverage" CACHE STRING "Flags used by the compiler during coverage builds." FORCE )
+mark_as_advanced( CMAKE_CXX_FLAGS_COVERAGE )
+
+# Enable sanitizers, if requested
+if( SANITIZER STREQUAL "address" )
+  set( CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fsanitize=address" )
+elseif( NOT SANITIZER STREQUAL "none" )
+  message( FATAL_ERROR "Error, only 'address' is supported for Clang sanitizers, in the build system." )
+endif()

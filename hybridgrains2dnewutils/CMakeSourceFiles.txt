@@ -1,0 +1,7 @@
+set( Sources
+  HybridGrains2DSceneParser.cpp
+)
+
+set( Headers
+  HybridGrains2DSceneParser.h
+)

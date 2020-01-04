@@ -1,0 +1,61 @@
+set( Sources
+  ConstrainedMaps/ImpactMaps/ImpactMap.cpp
+  ConstrainedMaps/ImpactMaps/ImpactOperatorUtilities.cpp
+  ConstrainedMaps/ImpactMaps/ImpactOperator.cpp
+  ConstrainedMaps/ImpactMaps/ImpactSolution.cpp
+  ConstrainedMaps/ImpactFrictionMap.cpp
+  Constraints/ConstrainedSystem.cpp
+  Constraints/Constraint.cpp
+  Constraints/ContactGraphTools.cpp
+  ConstrainedMaps/FrictionSolver.cpp
+  ConstrainedMaps/NullFrictionSolver.cpp
+  CollisionDetection/CollisionDetectionUtilities.cpp
+  Math/MathUtilities.cpp
+  Math/SparseMatrixIO.cpp
+  Timer/Timer.cpp
+  Timer/TimeUtils.cpp
+  ScriptingCallback.cpp
+  StringUtilities.cpp
+  Utilities.cpp
+  UnconstrainedMaps/FlowableSystem.cpp
+  UnconstrainedMaps/UnconstrainedMap.cpp
+  UnconstrainedMaps/NullUnconstrainedMap.cpp
+  HDF5File.cpp
+  PythonTools.cpp
+)
+if( USE_PYTHON )
+  list( APPEND Sources PythonObject.cpp )
+endif()
+
+
+set( Headers
+  CompileDefinitions.h
+  ConstrainedMaps/ImpactMaps/ImpactMap.h
+  ConstrainedMaps/ImpactMaps/ImpactOperatorUtilities.h
+  ConstrainedMaps/ImpactMaps/ImpactOperator.h
+  ConstrainedMaps/ImpactMaps/ImpactSolution.h
+  ConstrainedMaps/ImpactFrictionMap.h
+  Constraints/ConstrainedSystem.h
+  Constraints/Constraint.h
+  Constraints/ContactGraphTools.h
+  ConstrainedMaps/FrictionSolver.h
+  ConstrainedMaps/NullFrictionSolver.h
+  CollisionDetection/CollisionDetectionUtilities.h
+  Math/MathDefines.h
+  Math/MathUtilities.h
+  Math/Rational.h
+  Math/SparseMatrixIO.h
+  Timer/Timer.h
+  Timer/TimeUtils.h
+  ScriptingCallback.h
+  StringUtilities.h
+  Utilities.h
+  UnconstrainedMaps/FlowableSystem.h
+  UnconstrainedMaps/UnconstrainedMap.h
+  UnconstrainedMaps/NullUnconstrainedMap.h
+  HDF5File.h
+  PythonTools.h
+)
+if( USE_PYTHON )
+  list( APPEND Headers PythonObject.h )
+endif()

@@ -1,0 +1,50 @@
+# Note: GCC makes one add extra flags
+if( STRICT_BUILD )
+  # Do not work with Qt4: -Wzero-as-null-pointer-constant -Wuseless-cast
+  # Do not work with Sobogus: -Wsign-conversion -Wold-style-cast -Weffc++
+  # Do not work with SCISim: -Wfloat-equal -Wstrict-overflow=5 -Wsuggest-final-types -Wunsafe-loop-optimizations -Wsuggest-final-methods
+
+  # Enable as many warnings as possible
+  set( CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Werror -Wall -Wextra -Wpedantic -Wcast-align -Wdisabled-optimization -Wformat=2 -Winit-self -Winvalid-pch -Wmissing-include-dirs -Wnoexcept -Woverloaded-virtual -Wsign-promo -Wstrict-null-sentinel -Wtrampolines -Wundef -Wvector-operation-performance -Wconversion -Wctor-dtor-privacy -Wlogical-op -Wshadow -Wabi -Wcast-qual -Wmissing-declarations -Wredundant-decls -Werror=double-promotion" )
+
+  # Remove warnings that the code does not pass
+  set( CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wno-unused-parameter -Wno-unknown-pragmas" )
+  # Eigen and MPM2D...
+  set( CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wno-conversion" )
+  # Hybrid code...
+  set( CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wno-pedantic" )
+
+  set( CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wno-aligned-new" )
+endif()
+
+# Causes issues with the enrichment front end
+set( CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wno-deprecated-declarations" )
+
+# Disable run time type information
+# Causes issues with Flann
+# set( CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fno-rtti" )
+
+# Workaround for bug in CMake
+if( APPLE )
+  set( CMAKE_INCLUDE_SYSTEM_FLAG_C "-isystem " )
+  set( CMAKE_INCLUDE_SYSTEM_FLAG_CXX "-isystem " )
+endif()
+
+# Enable extra optimizations; note that march=native seemds to degrade performance on OS X
+if( NOT APPLE )
+  set( CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} -march=native" )
+endif()
+
+# Flags for code coverage tests
+set( CMAKE_CXX_FLAGS_COVERAGE "-O0 -g --coverage" CACHE STRING "Flags used by the compiler during coverage builds." FORCE )
+mark_as_advanced( CMAKE_CXX_FLAGS_COVERAGE )
+
+# Enable sanitizers, if requested
+if( SANITIZER STREQUAL "address" )
+  set( CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fsanitize=address" )
+elseif( SANITIZER STREQUAL "undefined" )
+  # -fsanitize=nonnull-attribute causes issues with Eigen
+  set( CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fsanitize=undefined -fno-sanitize-recover -fno-sanitize=nonnull-attribute" )
+elseif( NOT SANITIZER STREQUAL "none" )
+  message( FATAL_ERROR "Error, only 'address' and 'undefined' are supported for GCC sanitizers, in the build system." )
+endif()

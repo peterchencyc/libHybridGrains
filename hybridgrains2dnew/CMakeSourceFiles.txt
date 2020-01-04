@@ -1,0 +1,35 @@
+set( Sources
+  HybridGrains2DSim.cpp
+  DiscreteIntegrator.cpp
+  MPMIntegrator.cpp
+  HybridIntegratorState.cpp
+  Coupling.cpp
+  Grid.cpp
+  AvoidAvoid.cpp
+  uniformgrid.cpp
+  distgrid.cpp
+  random.c
+  ZoneTools.cpp
+  CircleRectangleIntersection.cpp
+  levelsetutil.cpp
+  ResamplingTools.cpp
+)
+
+set( Headers
+  HybridGrains2DSim.h
+  HybridDefinitions.h
+  DiscreteIntegrator.h
+  MPMIntegrator.h
+  HybridIntegratorState.h
+  Coupling.h
+  Grid.h
+  AvoidAvoid.h
+  uniformgrid.h
+  quadtree.h
+  distgrid.h
+  random.h
+  ZoneTools.h
+  CircleRectangleIntersection.h
+  levelsetutil.h
+  ResamplingTools.h
+)

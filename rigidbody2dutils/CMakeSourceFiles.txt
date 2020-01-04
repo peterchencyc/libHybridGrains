@@ -1,0 +1,17 @@
+set( Sources
+  CameraSettings2D.cpp
+  RigidBody2DSceneParser.cpp
+)
+
+if( USE_CAIRO )
+  list( APPEND Sources CairoImage.cpp CairoRenderSettings.cpp )
+endif()
+
+set( Headers
+  CameraSettings2D.h
+  RigidBody2DSceneParser.h
+)
+
+if( USE_CAIRO )
+  list( APPEND Headers CairoImage.h CairoRenderSettings.h )
+endif()

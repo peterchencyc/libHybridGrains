@@ -1,0 +1,16 @@
+<hybridgrains2d_scene>
+
+  <discrete_sim file_name="dem.xml"/>
+  <continuum_sim file_name="mpm.xml"/>
+
+  <time_step dt="0.000001"/>
+  <end_time t="10.0"/>
+
+  <integrator_type type="coupled"/>
+  <integrator_style style="prediction_correction_advection_node_node"/>
+  
+  <hybrid_kinematic_script type="none"/>
+
+  <coupling_force k="0.0" hw="1.0" order="1" test_number="6" enrichment_flags="00000" fixed_rzone="0 0 0 0" lmcoupling="1" LMEnableFixedRZone="0" rzoneHalfThickness="0.500000" demRMean="0.100000" demRStd="0.010000" avoidAVoidFreq="100" phiThreshold="0.300000" rzoneLevelSet="1.750000" phi_window_size="0.25" phi_samples_per_cell_side="1" level_set_cell_width="0.25" homogenize_stress="1" grid_smoothing_homogenized_stress="1" homogenize_velocity="1" grid_smoothing_homogenized_velocity="1"/>
+
+</hybridgrains2d_scene>

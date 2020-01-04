@@ -1,0 +1,16 @@
+set( Sources
+  ContentWidget.cpp
+  DisplayController2D.cpp
+  GLCircleRenderer2D.cpp
+  GLWidget.cpp
+  hybridgrains2dnew_qt4.cpp
+  Window.cpp
+)
+
+set( Headers
+  ContentWidget.h
+  DisplayController2D.h
+  GLCircleRenderer2D.h
+  GLWidget.h
+  Window.h
+)

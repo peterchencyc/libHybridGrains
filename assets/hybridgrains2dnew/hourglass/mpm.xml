@@ -1,0 +1,20 @@
+<mpmgrains2d>
+
+  <integrator dt="0.000001" alpha="1.0" shape_function_order="1" shape_function_category="uGIMP"/>
+
+  <end_time t="10.0"/>
+
+  <grid min="-4.2 -2.0" max="4.2 42.0" cell_width="0.25"/>
+
+  <material shear_modulus="1900000.0" bulk_modulus="4150000.0" alpha="0.37"/>
+
+  <rectangle min="-0.1 24.0" max="0.1 24.2" density="0.96" cell_samples_per_dim="2" vel="0.0 0.0" omega="0.0 0.0"/>-->
+
+  <near_earth_gravity f="0.0 -981.0"/>
+
+  <static_plane x="-4.0 0.0" n="1.0 0.0" boundary_behavior="sticking"/>
+  <static_plane x="0.0 0.0" n="0.0 1.0" boundary_behavior="sticking"/>
+  <static_plane x="4.0 0.0" n="-1.0 0.0" boundary_behavior="sticking"/>
+
+</mpmgrains2d>
+
