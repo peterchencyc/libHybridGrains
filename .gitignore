@@ -4,3 +4,4 @@ include
 build_release
 build_coverage
 build_release_2021
+mpmgrains2d/CompileDefinitions.h
