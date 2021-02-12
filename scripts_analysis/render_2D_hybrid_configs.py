@@ -35,10 +35,11 @@ from hybridgrains2d import hybrid2d_processing
 # cmra_scl = 25.0
 
 # Defense: column collapse test
-# img_size = numpy.array([1920, 1080])
-# cmra_psn = numpy.array([13.5, 4.0])
-# cmra_scl = 8.0
-# render_headers = True
+img_size = numpy.array([1920, 1080])
+cmra_psn = numpy.array([13.5, 4.0])
+cmra_scl = 8.0
+render_headers = True
+render_background = True
 
 # Defense: Discrete drainage test
 # img_size = numpy.array([1920, 1080])
@@ -47,11 +48,11 @@ from hybridgrains2d import hybrid2d_processing
 # render_headers = False
 
 # Defense: Small funnel drain
-img_size = numpy.array([1920, 1080])
-cmra_psn = numpy.array([0.0, 21.0])
-cmra_scl = 23.0
-render_headers = False
-render_background = True
+# img_size = numpy.array([1920, 1080])
+# cmra_psn = numpy.array([0.0, 21.0])
+# cmra_scl = 23.0
+# render_headers = False
+# render_background = True
 
 # Thesis: Stake insertion
 # img_size = numpy.array([1920, 1080])

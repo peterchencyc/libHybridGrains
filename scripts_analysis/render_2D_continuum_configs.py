@@ -7,35 +7,14 @@ import argparse
 import numpy
 from rigidbody2d import rb2d_processing
 from rigidbody2d import rb2d_rendering
+from mpm2d import mpm2d_processing
+from hybridgrains2d import hybrid2d_processing
 
-# Zoomed out collapse: -d 1024 1024 -p 14 3.0 -z 15.0
-# Zoomed in initial:   -d 1024 1024 -p 6.2273269459 3.0 -z 8.0
-
-# Camera settings for the flow
-# img_size = numpy.array( [ 1024, 1024 ] )
-# cmra_psn = numpy.array( [ 6.2273269459, 3.0 ] )
-# cmra_scl = 8.0
-
-# Camera settings for column collapse
-# img_size = numpy.array( [ 1024, 1024 ] )
-# cmra_psn = numpy.array( [ 12.454653891710405 / 2.0, 12.454653891710405 / 4.0 ] )
-# cmra_psn = numpy.array( [ 37.36396167513122 / 2.0, 12.454653891710405 / 4.0 ] )
-# cmra_scl = 20.0
-
-# Camera settings for the 2D Beverloo test, zoomed in settle
-# img_size = numpy.array([1280, 720])
-# cmra_psn = numpy.array([0.0, 31.0])
-# cmra_scl = 12.0
-
-# Camera settings for the 2D Beverloo test, zoomed out settle
-# img_size = numpy.array([1920, 1080])
-# cmra_psn = numpy.array([0.0, 40.0])
-# cmra_scl = 25.0
-
-# Camera settings for the 2D Beverloo test, zoomed out release
+# # Camera settings for the 2D Beverloo test, zoomed out release
 # img_size = numpy.array([1920, 1080])
 # cmra_psn = numpy.array([0.0, 7.0])
 # cmra_scl = 25.0
+
 # # Tmp
 # img_size = numpy.array([1920, 1080])
 # cmra_psn = numpy.array([0.0, 15.0])
@@ -45,50 +24,7 @@ from rigidbody2d import rb2d_rendering
 img_size = numpy.array([1920, 1080])
 cmra_psn = numpy.array([13.5, 4.0])
 cmra_scl = 8.0
-render_headers = True
-render_background = True
-
-# Defense: Discrete drainage test
-# img_size = numpy.array([1920, 1080])
-# cmra_psn = numpy.array([0.0, 15.0])
-# cmra_scl = 12.0
-# render_headers = False
-# render_background = True
-
-# Defense: Bifurcation test
-# img_size = numpy.array([1920, 1080])
-# cmra_psn = numpy.array([0.0, 6.0])
-# cmra_scl = 10.0
-# render_headers = False
-# render_background = True
-
-# Thesis: Stake insertion
-# img_size = numpy.array([1920, 1080])
-# cmra_psn = numpy.array([6.2273269458552, 4.75])
-# cmra_scl = 6.0
-# render_headers = False
-# render_background = True
-
-# Defense: Small funnel drain
-# img_size = numpy.array([1920, 1080])
-# cmra_psn = numpy.array([0.0, 21.0])
-# cmra_scl = 23.0
-# render_headers = False
-# render_background = True
-
-# Thesis: Drum
-# img_size = numpy.array([1920, 1080])
-# cmra_psn = numpy.array([0.0, 0.0])
-# cmra_scl = 14.0
-# render_headers = False
-# render_background = True
-
-# Defense: Box boucne test
-# img_size = numpy.array([1920, 1080])
-# cmra_psn = numpy.array([45.0, 25.0])
-# cmra_scl = 30.0
-# render_headers = False
-# render_background = True
+circle_rad = 0.05
 
 # big hourglass
 # img_size = numpy.array([1920, 1080])
@@ -96,6 +32,7 @@ render_background = True
 # cmra_scl = 43.0
 # render_headers = False
 # render_background = True
+
 
 parser = argparse.ArgumentParser( description='Renders images from 2D rigid body HDF5 files.' )
 parser.add_argument( '-x', '--skip_existing', help='do not generate a plot if a file already exists', action='store_true' )
@@ -152,29 +89,44 @@ config_file_matcher = re.compile(config_file_pattern)
 
 def draw_config(input_hdf5_name, output_image_name, image_size, camera_psn, camera_scl):
     '''Draws discrete bodies.'''
-    dstate, time, git_revision = rb2d_processing.load_discrete_state(input_hdf5_name)
-    dcolors = []
-    for bdy_idx in range(0, dstate.nbodies):
-        if dstate.fixed[bdy_idx]:
-            dcolors.append([0., 0., 0.])
-        else:
-            # if dstate.unique_ids[bdy_idx] % 2 == 0:
-            #     dcolors.append(numpy.array([70., 91., 181.]) / 255.)
-            # else:
-            #     dcolors.append(numpy.array([230., 41., 50.]) / 255.)
-            # dcolors.append(numpy.array([70., 91., 181.]) / 255.) # Darker blue
-            dcolors.append(0.9 * numpy.array([113., 172., 197.]) / 255.) # Blue
-            # dcolors.append(numpy.array([147., 215., 250.]) / 255.)
-            # dcolors.append(numpy.array([230., 41., 50.]) / 255.)
+    # dstate, time, git_revision = rb2d_processing.load_discrete_state(input_hdf5_name)
+    mstate, mtime, mhash = mpm2d_processing.load_configuration(input_hdf5_name)
+    # hdstate, hmstate = hybrid2d_processing.load_hybrid_configuration(input_hdf5_name)
+
+    # dcolors = []
+    # for bdy_idx in range(0, dstate.nbodies):
+    #     if dstate.fixed[bdy_idx]:
+    #         dcolors.append([0., 0., 0.])
+    #     elif hdstate.hybrid_weights[bdy_idx] != 1.0:
+    #         if dstate.unique_ids[bdy_idx] % 2 == 0:
+    #             dcolors.append(numpy.array([117, 13, 255]) / 255.)
+    #         else:
+    #             dcolors.append(numpy.array([255, 133, 28]) / 255.)
+    #     else:
+    #         if dstate.unique_ids[bdy_idx] % 2 == 0:
+    #             dcolors.append(numpy.array([70., 91., 181.]) / 255.)
+    #         else:
+    #             dcolors.append(numpy.array([230., 41., 50.]) / 255.)
+
+    circle_colors = []
+    for bdy_idx in range(0, mstate.npoints):
+        circle_colors.append([230. / 255., 41. / 255., 50. / 255., 1.0])
+
+    # For plotting the grid
+    # grid_point_colors = []
+    # grid_points_to_plot = []
+    # for node_idx in range(0, hmstate.nnodes):
+    #     if hmstate.grid_hybrid_weights[node_idx] != 1.0:
+    #         grid_point_colors.append([0., 0., 0., 1.0])
+    #         grid_points_to_plot.append(hmstate.grid_node_positions[2 * node_idx: 2 * node_idx + 2])
+
     with rb2d_rendering.CairoImage(output_image_name, image_size) as cr:
-        if render_background:
-            rb2d_rendering.render_white_background(cr, image_size)
-        rb2d_rendering.render_static_drums(cr, image_size, camera_psn, camera_scl, dstate)
-        rb2d_rendering.render_static_planes(cr, image_size, camera_psn, camera_scl, dstate)
-        rb2d_rendering.render_discrete_bodies(cr, image_size, camera_psn, camera_scl, dstate, dcolors)
-        if render_headers:
-            rb2d_rendering.render_time(cr, time)
-            rb2d_rendering.render_git_hash(cr, git_revision)
+        rb2d_rendering.render_white_background(cr, image_size)
+        # rb2d_rendering.render_discrete_bodies(cr, image_size, camera_psn, camera_scl, dstate, dcolors)
+        rb2d_rendering.render_circles(cr, image_size, camera_psn, camera_scl, mstate.q, circle_colors, circle_rad)
+        # rb2d_rendering.render_grid_points(cr, image_size, camera_psn, camera_scl, grid_points_to_plot, grid_point_colors)
+        rb2d_rendering.render_time(cr, mtime)
+        rb2d_rendering.render_git_hash(cr, mhash)
 
 
 for file_name in sorted(os.listdir(input_directory)):
