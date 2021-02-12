@@ -1,0 +1,14 @@
+<hybridgrains2d_scene>
+  <discrete_sim file_name="dem.xml"/>
+  <continuum_sim file_name="mpm.xml"/>
+  <time_step dt="1 / 1000080"/>
+  <end_time t="2.0"/>
+
+  <integrator_type type="coupled"/>
+  <integrator_style style="prediction_correction_advection_node_node"/>
+  <post_stabilization_settings stabilization_order="after_advection" stabilization_type="fix_penetration" velocity_blending="0.0" spring_constant="0.0" tolerance="1.0e-5" max_iter="1000"/>
+  <hybrid_kinematic_script type="none"/>
+  <!-- <coupling_force k="0.0" hw="1.0" order="1" test_number="6" enrichment_flags="00000" fixed_rzone="0 0 0 0" lmcoupling="1" LMEnableFixedRZone="0" rzoneHalfThickness="0.1" demRMean="0.0574865702199" demRStd="0.00574890375453" avoidAVoidFreq="100" phiThreshold="0.300000" rzoneLevelSet="1.750000" phi_window_size="0.25" phi_samples_per_cell_side="1" level_set_cell_width="0.2" rho_dem="2.53"/> -->
+  <coupling_force k="0.0" hw="1.0" order="1" test_number="6" enrichment_flags="00000" fixed_rzone="0 0 0 0" lmcoupling="1" LMEnableFixedRZone="0" rzoneHalfThickness="0.1" demRMean="0.0574865702199" demRStd="0.00574890375453" avoidAVoidFreq="100" phiThreshold="0.300000" rzoneLevelSet="1.250000" phi_window_size="0.25" phi_samples_per_cell_side="1" level_set_cell_width="0.2" rho_dem="2.53" homogenize_stress="1" grid_smoothing_homogenized_stress="1" homogenize_velocity="1" grid_smoothing_homogenized_velocity="1"/>
+
+</hybridgrains2d_scene>

@@ -3,3 +3,4 @@ include
 .vscode
 build_release
 build_coverage
+build_release_2021
