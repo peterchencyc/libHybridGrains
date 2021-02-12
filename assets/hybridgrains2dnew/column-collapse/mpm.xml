@@ -2,7 +2,7 @@
 
   <end_time t="2.0"/>
 
-  <grid min="-0.3 -0.3" max="40.0 7.0" cell_width="0.2"/>
+  <grid min="-0.4 -0.4" max="40.0 7.0" cell_width="0.2"/>
 
   <integrator dt="1 / 1000080" alpha="0.999" shape_function_order="1" shape_function_category="uGIMP"/>
   <material shear_modulus="1900000.0" bulk_modulus="4150000.0" alpha="0.37"/>

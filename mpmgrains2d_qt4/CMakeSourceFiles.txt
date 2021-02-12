@@ -1,0 +1,16 @@
+set( Sources
+  ContentWidget.cpp
+  GL2DCircleRenderer.cpp
+  GLWidget.cpp
+  TwoDimensionalDisplayController.cpp
+  Window.cpp
+  mpmgrains_2d_qt4.cpp
+)
+
+set( Headers
+  ContentWidget.h
+  GL2DCircleRenderer.h
+  GLWidget.h
+  TwoDimensionalDisplayController.h
+  Window.h
+)

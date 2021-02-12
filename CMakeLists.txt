@@ -151,6 +151,10 @@ endif()
 
 add_subdirectory( mpmgrains2d )
 add_subdirectory( mpmgrains2dutils )
+add_subdirectory( mpmgrains2d_cli )
+if( USE_QT4 )
+  add_subdirectory( mpmgrains2d_qt4 )
+endif()
 
 # Core hybrid grains simulation library
 add_subdirectory( hybridgrains2dnew )
