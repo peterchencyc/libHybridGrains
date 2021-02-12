@@ -49,6 +49,11 @@ HybridGrains2DSim::HybridGrains2DSim(
       m_initialized(true), m_initial_resampling_performed(false),
       m_integrator_state(hybrid_integrator_state), m_discrete_sim(),
       m_continuum_state(continuum_state) {
+
+  // clear up continuum data so avoid a void can be used to initialize continuum
+  // data
+  m_continuum_state.material_points.clear();
+
   m_discrete_sim.getState() = discrete_state;
   m_discrete_sim.clearConstraintCache();
 
