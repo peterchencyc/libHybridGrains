@@ -1,0 +1,24 @@
+set( Sources
+  AnnulusGeometryRenderer.cpp
+  BoxGeometryRenderer.cpp
+  CircleGeometryRenderer.cpp
+  ContentWidget.cpp
+  DisplayController2D.cpp
+  GLCircleRenderer2D.cpp
+  GLWidget.cpp
+  rigidbody2d_qt4.cpp
+  RigidBodyRenderer2D.cpp
+  Window.cpp
+)
+
+set( Headers
+  AnnulusGeometryRenderer.h
+  BoxGeometryRenderer.h
+  CircleGeometryRenderer.h
+  ContentWidget.h
+  DisplayController2D.h
+  GLCircleRenderer2D.h
+  GLWidget.h
+  RigidBodyRenderer2D.h
+  Window.h
+)

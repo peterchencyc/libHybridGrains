@@ -141,6 +141,14 @@ add_subdirectory( rigidbody2d )
 # Utilities shared by the command-line and Qt4 interface
 add_subdirectory( rigidbody2dutils )
 
+# Command line interface for two dimensional rigid body simulations
+add_subdirectory( rigidbody2dcli )
+
+# Qt4 interface for two dimensional rigid body simulations
+if( USE_QT4 )
+  add_subdirectory( rigidbody2dqt4 )
+endif()
+
 add_subdirectory( mpmgrains2d )
 add_subdirectory( mpmgrains2dutils )
 
