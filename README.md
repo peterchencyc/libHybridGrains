@@ -72,14 +72,26 @@ To output simulation data to the hard drive, enable HDF5 support and use the cli
 
         cmake -DUSE_HDF5=ON ..
         make -j
-         ./hybridgrains2dnew_cli assets/column-collapse/hybrid.xml -f <frame_rate> -o <output_dir>
+        cd hybridgrains2dnewcli
+        ./hybridgrains2dnew_cli assets/column-collapse/hybrid.xml -f <frame_rate> -o <output_dir>
 
 To render the simulation data, inside the project root, run:
 
-        python scripts/render_2D_hybrid_configs.py -i <sim_data> -o <output_dir>
+        python scripts_analysis/render_2D_hybrid_configs.py -i <sim_data> -o <output_dir>
 
 Stand-alone Discrete and Continuum Simulations
 ----------------
+We also provide stand-alone qt4 and cli interfaces for running purely discrete simulations and purely continuum simulations. For example, you can run a purely discrete column collapse by runing the following command in the build directory:
+
+        cd rigidbody2dcli
+        ./rigidbody2d_cli ../../assets/hybridgrains2dnew/column-collapse/dem.xml -f <frame_rate> -o <output_dir>
+
+and a purely continuum column collpase via:
+
+        cd mpmgrains2d_cli
+        ./mpmgrains2d_cli ../../assets/hybridgrains2dnew/column-collapse/mpm.xml -f <frame_rate> -o <output_dir>
+
+scripts_analysis/render_2D_discrete_configs.py and scripts_analysis/render_2D_continuum_configs.py are also provided for rendering the purely discrete and contiuum data.
 
 Citation
 ---------------
