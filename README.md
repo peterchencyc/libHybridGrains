@@ -62,12 +62,21 @@ To obtain a minimal demo build that simulates granular column collapse:
 7. Load the example simulation:
 
         cd hybridgrains2dnewqt4
-        ./hybridgrains2dnewqt4 assets/column_collapse/hybrid.xml
+        ./hybridgrains2dnew_qt4 assets/column-collapse/hybrid.xml
 
 8. Click "Simulate" to run the simulation!
 
-Output and Process Data
+Output and Render Data
 ----------------
+To output simulation data to the hard drive, enable HDF5 support and use the cli interface. Inside the build directory, run:
+
+        cmake -DUSE_HDF5=ON ..
+        make -j
+         ./hybridgrains2dnew_cli assets/column-collapse/hybrid.xml -f <frame_rate> -o <output_dir>
+
+To render the simulation data, inside the project root, run:
+
+        python scripts/render_2D_hybrid_configs.py -i <sim_data> -o <output_dir>
 
 Stand-alone Discrete and Continuum Simulations
 ----------------
