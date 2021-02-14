@@ -13,7 +13,7 @@ The source code contains three parts:
 
 We currently do not have a time table for releasing the 3D source code. Please contact us if you are interested.
 
-Required Dependencies
+Dependencies
 ---------------------
 
 libHybridGrains requires two dependencies for a minimal build:
@@ -23,10 +23,6 @@ libHybridGrains requires two dependencies for a minimal build:
 * [Eigen](http://eigen.tuxfamily.org/): A linear algebra library used internally.
 
 We provide a 'get_dependencies.sh' script to automatically download, verify, and extract the supported versions of these libraries.
-
-
-Recommended Dependencies
-------------------------
 
 We recommend a few dependencies for full featured builds:
 
