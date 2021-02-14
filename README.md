@@ -95,6 +95,7 @@ scripts_analysis/render_2D_discrete_configs.py and scripts_analysis/render_2D_co
 
 Citation
 ---------------
+If this library helped you in a publication, please cite our hybrid grains paper so others can find our code and benefit as well.
 ```
 @inproceedings{yue2018hybrid,
   title={Hybrid grains: Adaptive coupling of discrete and continuum simulations of granular media},
