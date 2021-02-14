@@ -1,6 +1,14 @@
 libHybridGrains
 =======================================
-Intro to be finished...
+[placeholder.gif]
+libHybridGrains is an open source project for efficient simulations of granular media. In particular, it is the 2D implementation of the hybrid grains project, Hybrid Grains: Adaptive Coupling of Discrete and Continuum Simulations of Granular Media (see our project page for more details: http://www.cs.columbia.edu/~smith/hybrid_grains ).
+
+The source code contains three parts:
+ - A discute simulator based on the Discrete Element Method (DEM)
+ - A continuum simulator based on the Material Point Method (MPM)
+ - A framework that adaptively couples the discrete simulation and the continuum simulations
+
+We currently do not have a time table for releasing the 3D source code. Please contact us if you are interested.
 
 Required Dependencies
 ---------------------
@@ -21,15 +29,12 @@ We recommend a few dependencies for full featured builds:
 
 * [Qt4](http://qt.digia.com/): A user interface library to provide graphical front ends. Available through most standard package managers.
 
-* [HDF5](https://www.hdfgroup.org/HDF5/): A binary file format for configuration and force output. Available through most standard package managers.
-
-* [Python](https://www.python.org): An interpreted language used for extending libHybridGrains's functionality with plugins. Available standard on most platforms. Note that full libHybridGrains test suite requires the installation of the [numpy](http://www.numpy.org) and [h5py](http://www.h5py.org) Python packages.
-
+* [HDF5](https://www.hdfgroup.org/HDF5/): A binary file format for data output. Available through most standard package managers.
 
 Quickstart Guide
 ----------------
 
-To obtain a minimal demo build that simulates colliding triangle meshes:
+To obtain a minimal demo build that simulates granular column collapse:
 
 1. Install Qt4 and CMake. These packages are available from most standard package managers.
 
@@ -47,9 +52,9 @@ To obtain a minimal demo build that simulates colliding triangle meshes:
         mkdir build
         cd build
 
-5. Run CMake to create the build system with Qt4 and HDF5 enabled:
+5. Run CMake to create the build system with Qt4 enabled:
 
-        cmake -DUSE_QT4=ON -DUSE_HDF5=ON ..
+        cmake -DUSE_QT4=ON ..
 
 6. Build libHybridGrains:
 
@@ -58,37 +63,15 @@ To obtain a minimal demo build that simulates colliding triangle meshes:
 7. Load the example simulation:
 
         cd hybridgrains2dnewqt4
-        ./hybridgrains2dnewqt4 assets/hourglass/hybrid.xml
+        ./hybridgrains2dnewqt4 assets/column_collapse/hybrid.xml
 
 8. Click "Simulate" to run the simulation!
 
+Output and Process Data
+----------------
 
-Building libHybridGrains
----------------
-
-libHybridGrains uses the CMake build system. libHybridGrains is tested regularly against recent versions of the GCC and LLVM on both Linux and OS X. A minimal libHybridGrains build requires only a C and C++ compiler.
-
-The build system can be configured via the command line by running
-
-    ccmake ..
-
-from the build directory.
-
-Options of note include:
-
-* CMAKE_BUILD_TYPE: General build type that enables various optimization and compiler flags. Options are: Debug, Release, RelWithDebInfo, MinSizeRel, Coverage
-
-* STRICT_BUILD: Enables aggressive warnings and treats warnings as errors. Recommended for development.
-
-* USE_HDF5: Enables state and force output via [HDF5](https://www.hdfgroup.org/HDF5/) files.
-
-* USE_OPENMP: Enables OpenMP support. Highly recommended.
-
-* USE_QT4: Enables support for graphical front ends using [Qt4](http://qt.digia.com/).
-
-* USE_PYTHON: Enables support for embedded Python language scripting. Required for kinematic scripting.
-
-* SANITIZER: Enables support for compiler sanitizer modes. Options are: none, address
+Stand-alone Discrete and Continuum Simulations
+----------------
 
 Citation
 ---------------
