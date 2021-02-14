@@ -1,6 +1,9 @@
 libHybridGrains
 =======================================
-[placeholder.gif]
+<p float="left">
+<img src="clips/column-collapse.gif"/>
+</p>
+
 libHybridGrains is an open source project for efficient simulations of granular media. In particular, it is the 2D implementation of the hybrid grains project, Hybrid Grains: Adaptive Coupling of Discrete and Continuum Simulations of Granular Media (see our project page for more details: http://www.cs.columbia.edu/~smith/hybrid_grains ).
 
 The source code contains three parts:
